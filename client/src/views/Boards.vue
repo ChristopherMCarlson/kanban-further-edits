@@ -1,16 +1,19 @@
 <template>
   <div class="boards">
-    <div class="all">
+    <div class="">
       <div class="header">
         <button class="btn btn-danger" @click="logout">Logout</button>
       </div>
-      <div class="a-board" v-for="board in boards" :key="board._id">
-        <router-link :to="{name: 'board', params: {boardId: board._id}}">
+      <div class="row" style="justify-content:center">
+        <div class="card col-sm-2 mx-2" v-for="board in boards" :key="board._id">
           <div class="title" @click="activeBoard(board._id)">
             {{board.title}}
           </div>
-        </router-link>
-        <button class="delete-btn" @click="deleteBoard(board._id)"><i class="fas fa-trash"></i></button>
+          <router-link :to="{name: 'board', params: {boardId: board._id}}">
+            <button class="btn btn-success">View Board</button>
+          </router-link>
+          <button class="btn btn-danger" @click="deleteBoard(board._id)"><i class="fas fa-trash"></i></button>
+        </div>
       </div>
       <div class="boards-form">
         <QuickModal class="form-btn">
